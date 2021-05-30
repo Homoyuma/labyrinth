@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 3cfacd12dd28b5c42ad8f1b9c8b065d6
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - material: {instanceID: 0}
+  - CellPrefab: {instanceID: 0}
+  - FinishCellPrefab: {instanceID: 0}
+  - TriangleCellPrefab: {instanceID: 0}
+  - TriangleFinishCellPrefab: {instanceID: 0}
+  - ThetaCellPrefab: {instanceID: 0}
+  - ThetaFinishCellPrefab: {instanceID: 0}
+  - Player: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
