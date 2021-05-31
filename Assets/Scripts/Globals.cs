@@ -14,10 +14,18 @@ public class Globals : MonoBehaviour
     public static int numberOfThetaCells = 16;
     //change later
     public static int mazeType = 1;
-
-    public static List<Cell> cellArray = new List<Cell>();
-    public static FinishWall finishWall;
-    public static MazeSpawner spawner;
+    public static List<Cell> cellArray1 = new List<Cell>();
+    public static List<Cell> cellArray2 = new List<Cell>();
+    public static List<Cell> cellArray3 = new List<Cell>();
+    public static List<Cell> cellArray4 = new List<Cell>();
+    public static FinishWall finishWall1;
+    public static FinishWall finishWall2;
+    public static FinishWall finishWall3;
+    public static FinishWall finishWall4;
+    public static MazeSpawner spawner1;
+    public static MazeSpawner spawner2;
+    public static MazeSpawner spawner3;
+    public static MazeSpawner spawner4;
 
     public static int getNumberOfCellsInRow(int x)
     {

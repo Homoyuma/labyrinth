@@ -9,6 +9,7 @@ public class MoveToFinish : Agent
 {
     public Rigidbody2D agentRigidbody;
     [SerializeField] private Transform targetTransform;
+    private Vector2 offset = new Vector2(0.5f, 0.5f);
     //[SerializeField] public Material win;
     //[SerializeField] public SpriteRenderer floor;
     private void Awake()
@@ -17,7 +18,7 @@ public class MoveToFinish : Agent
     }
     public override void OnEpisodeBegin()
     {
-        transform.localPosition = new Vector2(Random.Range(0, 3), Random.Range(0, 3));
+        transform.localPosition = new Vector2(Random.Range(0, PlayerPrefs.GetInt("width")), Random.Range(0, PlayerPrefs.GetInt("height"))) + offset;
         //transform.localPosition = new Vector2(0.5f, 0.5f);
     }
     public override void CollectObservations(VectorSensor sensor)
@@ -74,16 +75,59 @@ public class MoveToFinish : Agent
         if (collision.gameObject.name.StartsWith("FinishWall")) {
             AddReward(+1f);
             //floor.material = win;
-            int count = Globals.cellArray.Count;
-            GameObject.Destroy(Globals.finishWall.gameObject);
-            Globals.finishWall = null;
-            for (int i = 0; i < count; i++)
+            if (transform.name == "1")
             {
-                GameObject.Destroy(Globals.cellArray[0].gameObject);
-                Globals.cellArray.RemoveAt(0);
+                int count = Globals.cellArray1.Count;
+                GameObject.Destroy(Globals.finishWall1.gameObject);
+                Globals.finishWall1 = null;
+                for (int i = 0; i < count; i++)
+                {
+                    GameObject.Destroy(Globals.cellArray1[0].gameObject);
+                    Globals.cellArray1.RemoveAt(0);
+                }
+                Globals.spawner1.Start();
+                EndEpisode();
             }
-            Globals.spawner.Start();
-            EndEpisode();
+            if (transform.name == "2")
+            {
+                int count = Globals.cellArray2.Count;
+                GameObject.Destroy(Globals.finishWall2.gameObject);
+                Globals.finishWall2 = null;
+                for (int i = 0; i < count; i++)
+                {
+                    GameObject.Destroy(Globals.cellArray2[0].gameObject);
+                    Globals.cellArray2.RemoveAt(0);
+                }
+                Globals.spawner2.Start();
+                EndEpisode();
+            }
+            if (transform.name == "3")
+            {
+                int count = Globals.cellArray3.Count;
+                GameObject.Destroy(Globals.finishWall3.gameObject);
+                Globals.finishWall3 = null;
+                for (int i = 0; i < count; i++)
+                {
+                    GameObject.Destroy(Globals.cellArray3[0].gameObject);
+                    Globals.cellArray3.RemoveAt(0);
+                }
+                Globals.spawner3.Start();
+                EndEpisode();
+            }
+            if (transform.name == "4")
+            {
+                int count = Globals.cellArray4.Count;
+                GameObject.Destroy(Globals.finishWall4.gameObject);
+                Globals.finishWall4 = null;
+                for (int i = 0; i < count; i++)
+                {
+                    GameObject.Destroy(Globals.cellArray4[0].gameObject);
+                    Globals.cellArray4.RemoveAt(0);
+                }
+                Globals.spawner4.Start();
+                EndEpisode();
+            }
+
         }
         //Debug.Log(collision.gameObject.name);
         if (collision.gameObject.name.StartsWith("Wall"))

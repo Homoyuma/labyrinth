@@ -17,6 +17,8 @@ public class MazeSpawner : MonoBehaviour
     public GameObject ThetaCellPrefab;
     public GameObject ThetaFinishCellPrefab;
 
+
+    public Transform offset;
     public Transform Player;
     // Start is called before the first frame update
     public void Start()
@@ -33,7 +35,22 @@ public class MazeSpawner : MonoBehaviour
                 thetaMaze();
                 break;
         }
-        Globals.spawner = this;
+        if (transform.name == "1")
+        {
+            Globals.spawner1 = this;
+        }
+        if (transform.name == "2")
+        {
+            Globals.spawner2 = this;
+        }
+        if (transform.name == "3")
+        {
+            Globals.spawner3 = this;
+        }
+        if (transform.name == "4")
+        {
+            Globals.spawner4 = this;
+        }
     }
     public void gammaMaze()
     {
@@ -43,9 +60,26 @@ public class MazeSpawner : MonoBehaviour
         {
             for (int y = 0; y < maze.GetLength(1); y++)
             {
-                Cell c = Instantiate(CellPrefab, new Vector2(x, y), Quaternion.identity).GetComponent<Cell>();
-                Globals.cellArray.Add(c);
-
+                float offsetX = offset.transform.position.x;
+                float offsetY = offset.transform.position.y;
+                Cell c = Instantiate(CellPrefab, new Vector2(x + offsetX, y + offsetY), Quaternion.identity).GetComponent<Cell>();
+                
+                if (transform.name == "1")
+                {
+                    Globals.cellArray1.Add(c);
+                }
+                if (transform.name == "2")
+                {
+                    Globals.cellArray2.Add(c);
+                }
+                if (transform.name == "3")
+                {
+                    Globals.cellArray3.Add(c);
+                }
+                if (transform.name == "4")
+                {
+                    Globals.cellArray4.Add(c);
+                }
                 c.WallLeft.SetActive(maze[x, y].WallLeft);
                 c.WallBottom.SetActive(maze[x, y].WallBottom);
 
@@ -53,28 +87,89 @@ public class MazeSpawner : MonoBehaviour
                 {
                     if (x == 0)
                     {
-                        FinishWall f = Instantiate(FinishWallPrefab, new Vector2(x + 1, y), Quaternion.identity).GetComponent<FinishWall>();
+                        FinishWall f = Instantiate(FinishWallPrefab, new Vector2(x + 1 + offsetX, y + offsetY), Quaternion.identity).GetComponent<FinishWall>();
                         f.transform.Rotate(Vector3.forward, 90f);
-                        Globals.finishWall = f;
+                        if (transform.name == "1")
+                        {
+                            Globals.finishWall1 = f;
+                        }
+                        if (transform.name == "2")
+                        {
+                            Globals.finishWall2 = f;
+                        }
+                        if (transform.name == "3")
+                        {
+                            Globals.finishWall3 = f;
+                        }
+                        if (transform.name == "4")
+                        {
+                            Globals.finishWall4 = f;
+                        }
                     }
                     else if (y == 0)
                     {
-                        FinishWall f = Instantiate(FinishWallPrefab, new Vector2(x, y - 1), Quaternion.identity).GetComponent<FinishWall>();
+                        FinishWall f = Instantiate(FinishWallPrefab, new Vector2(x + offsetX, y - 1 + offsetY), Quaternion.identity).GetComponent<FinishWall>();
                         f.transform.Rotate(Vector3.forward, 0f);
-                        Globals.finishWall = f;
+                        if (transform.name == "1")
+                        {
+                            Globals.finishWall1 = f;
+                        }
+                        if (transform.name == "2")
+                        {
+                            Globals.finishWall2 = f;
+                        }
+                        if (transform.name == "3")
+                        {
+                            Globals.finishWall3 = f;
+                        }
+                        if (transform.name == "4")
+                        {
+                            Globals.finishWall4 = f;
+                        }
                     }
                     else if (y == maze.GetLength(1) - 1)
                     {
-                        FinishWall f = Instantiate(FinishWallPrefab, new Vector2(x, y - 1), Quaternion.identity).GetComponent<FinishWall>();
+                        FinishWall f = Instantiate(FinishWallPrefab, new Vector2(x + offsetX, y - 1 + offsetY), Quaternion.identity).GetComponent<FinishWall>();
                         f.transform.Rotate(Vector3.forward, 0f);
-                        Globals.finishWall = f;
+                        if (transform.name == "1")
+                        {
+                            Globals.finishWall1 = f;
+                        }
+                        if (transform.name == "2")
+                        {
+                            Globals.finishWall2 = f;
+                        }
+                        if (transform.name == "3")
+                        {
+                            Globals.finishWall3 = f;
+                        }
+                        if (transform.name == "4")
+                        {
+                            Globals.finishWall4 = f;
+                        }
                     }
-                    else if (x == maze.GetLength(0) - 1)
+                    else
                     {
-                        FinishWall f = Instantiate(FinishWallPrefab, new Vector2(x + 1, y), Quaternion.identity).GetComponent<FinishWall>();
+                        FinishWall f = Instantiate(FinishWallPrefab, new Vector2(x + 1 + offsetX, y + offsetY), Quaternion.identity).GetComponent<FinishWall>();
                         f.transform.Rotate(Vector3.forward, 90f);
-                        Globals.finishWall = f;
+                        if (transform.name == "1")
+                        {
+                            Globals.finishWall1 = f;
+                        }
+                        if (transform.name == "2")
+                        {
+                            Globals.finishWall2 = f;
+                        }
+                        if (transform.name == "3")
+                        {
+                            Globals.finishWall3 = f;
+                        }
+                        if (transform.name == "4")
+                        {
+                            Globals.finishWall4 = f;
+                        }
                     }
+                    
                 }
             }
         }
