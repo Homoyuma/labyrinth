@@ -75,59 +75,17 @@ public class MoveToFinish : Agent
         if (collision.gameObject.name.StartsWith("FinishWall")) {
             AddReward(+1f);
             //floor.material = win;
-            if (transform.name == "1")
+            int index = int.Parse(transform.parent.name);
+            int count = Globals.cellArray[index].Count;
+            GameObject.Destroy(Globals.finishWall[index].gameObject);
+            Globals.finishWall[index] = null;
+            for (int i = 0; i < count; i++)
             {
-                int count = Globals.cellArray1.Count;
-                GameObject.Destroy(Globals.finishWall1.gameObject);
-                Globals.finishWall1 = null;
-                for (int i = 0; i < count; i++)
-                {
-                    GameObject.Destroy(Globals.cellArray1[0].gameObject);
-                    Globals.cellArray1.RemoveAt(0);
-                }
-                Globals.spawner1.Start();
-                EndEpisode();
+                GameObject.Destroy(Globals.cellArray[index][0].gameObject);
+                Globals.cellArray[index].RemoveAt(0);
             }
-            if (transform.name == "2")
-            {
-                int count = Globals.cellArray2.Count;
-                GameObject.Destroy(Globals.finishWall2.gameObject);
-                Globals.finishWall2 = null;
-                for (int i = 0; i < count; i++)
-                {
-                    GameObject.Destroy(Globals.cellArray2[0].gameObject);
-                    Globals.cellArray2.RemoveAt(0);
-                }
-                Globals.spawner2.Start();
-                EndEpisode();
-            }
-            if (transform.name == "3")
-            {
-                int count = Globals.cellArray3.Count;
-                GameObject.Destroy(Globals.finishWall3.gameObject);
-                Globals.finishWall3 = null;
-                for (int i = 0; i < count; i++)
-                {
-                    GameObject.Destroy(Globals.cellArray3[0].gameObject);
-                    Globals.cellArray3.RemoveAt(0);
-                }
-                Globals.spawner3.Start();
-                EndEpisode();
-            }
-            if (transform.name == "4")
-            {
-                int count = Globals.cellArray4.Count;
-                GameObject.Destroy(Globals.finishWall4.gameObject);
-                Globals.finishWall4 = null;
-                for (int i = 0; i < count; i++)
-                {
-                    GameObject.Destroy(Globals.cellArray4[0].gameObject);
-                    Globals.cellArray4.RemoveAt(0);
-                }
-                Globals.spawner4.Start();
-                EndEpisode();
-            }
-
+            Globals.spawner[index].Start();
+            EndEpisode();
         }
         //Debug.Log(collision.gameObject.name);
         if (collision.gameObject.name.StartsWith("Wall"))

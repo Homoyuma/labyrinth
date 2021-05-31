@@ -20,9 +20,15 @@ public class MazeSpawner : MonoBehaviour
 
     public Transform offset;
     public Transform Player;
+    public int index;
     // Start is called before the first frame update
     public void Start()
     {
+        index = int.Parse(transform.parent.name);
+        Globals.cellArray[index] = new List<Cell>();
+        Globals.finishWall[index] = new FinishWall();
+        Globals.spawner[index] = new MazeSpawner();
+        Globals.spawner[index] = this;
         switch (PlayerPrefs.GetInt("type"))
         {
             case 1:
@@ -35,25 +41,10 @@ public class MazeSpawner : MonoBehaviour
                 thetaMaze();
                 break;
         }
-        if (transform.name == "1")
-        {
-            Globals.spawner1 = this;
-        }
-        if (transform.name == "2")
-        {
-            Globals.spawner2 = this;
-        }
-        if (transform.name == "3")
-        {
-            Globals.spawner3 = this;
-        }
-        if (transform.name == "4")
-        {
-            Globals.spawner4 = this;
-        }
     }
     public void gammaMaze()
     {
+        index = int.Parse(transform.parent.name);
         MazeGenerator generator = new MazeGenerator();
         MazeGeneratorCell[,] maze = generator.GenerateMaze();
         for (int x = 0; x < maze.GetLength(0); x++)
@@ -63,113 +54,36 @@ public class MazeSpawner : MonoBehaviour
                 float offsetX = offset.transform.position.x;
                 float offsetY = offset.transform.position.y;
                 Cell c = Instantiate(CellPrefab, new Vector2(x + offsetX, y + offsetY), Quaternion.identity).GetComponent<Cell>();
-                
-                if (transform.name == "1")
-                {
-                    Globals.cellArray1.Add(c);
-                }
-                if (transform.name == "2")
-                {
-                    Globals.cellArray2.Add(c);
-                }
-                if (transform.name == "3")
-                {
-                    Globals.cellArray3.Add(c);
-                }
-                if (transform.name == "4")
-                {
-                    Globals.cellArray4.Add(c);
-                }
+
+                Globals.cellArray[index].Add(c);
                 c.WallLeft.SetActive(maze[x, y].WallLeft);
                 c.WallBottom.SetActive(maze[x, y].WallBottom);
 
                 if (maze[x, y].IsFinishCell)
                 {
+                    FinishWall f;
                     if (x == 0)
                     {
-                        FinishWall f = Instantiate(FinishWallPrefab, new Vector2(x + 1 + offsetX, y + offsetY), Quaternion.identity).GetComponent<FinishWall>();
+                        f = Instantiate(FinishWallPrefab, new Vector2(x + 1 + offsetX, y + offsetY), Quaternion.identity).GetComponent<FinishWall>();
                         f.transform.Rotate(Vector3.forward, 90f);
-                        if (transform.name == "1")
-                        {
-                            Globals.finishWall1 = f;
-                        }
-                        if (transform.name == "2")
-                        {
-                            Globals.finishWall2 = f;
-                        }
-                        if (transform.name == "3")
-                        {
-                            Globals.finishWall3 = f;
-                        }
-                        if (transform.name == "4")
-                        {
-                            Globals.finishWall4 = f;
-                        }
+                        
                     }
                     else if (y == 0)
                     {
-                        FinishWall f = Instantiate(FinishWallPrefab, new Vector2(x + offsetX, y - 1 + offsetY), Quaternion.identity).GetComponent<FinishWall>();
-                        f.transform.Rotate(Vector3.forward, 0f);
-                        if (transform.name == "1")
-                        {
-                            Globals.finishWall1 = f;
-                        }
-                        if (transform.name == "2")
-                        {
-                            Globals.finishWall2 = f;
-                        }
-                        if (transform.name == "3")
-                        {
-                            Globals.finishWall3 = f;
-                        }
-                        if (transform.name == "4")
-                        {
-                            Globals.finishWall4 = f;
-                        }
+                        f = Instantiate(FinishWallPrefab, new Vector2(x + offsetX, y - 1 + offsetY), Quaternion.identity).GetComponent<FinishWall>();
+                        //f.transform.Rotate(Vector3.forward, 0f);
                     }
                     else if (y == maze.GetLength(1) - 1)
                     {
-                        FinishWall f = Instantiate(FinishWallPrefab, new Vector2(x + offsetX, y - 1 + offsetY), Quaternion.identity).GetComponent<FinishWall>();
-                        f.transform.Rotate(Vector3.forward, 0f);
-                        if (transform.name == "1")
-                        {
-                            Globals.finishWall1 = f;
-                        }
-                        if (transform.name == "2")
-                        {
-                            Globals.finishWall2 = f;
-                        }
-                        if (transform.name == "3")
-                        {
-                            Globals.finishWall3 = f;
-                        }
-                        if (transform.name == "4")
-                        {
-                            Globals.finishWall4 = f;
-                        }
+                        f = Instantiate(FinishWallPrefab, new Vector2(x + offsetX, y - 1 + offsetY), Quaternion.identity).GetComponent<FinishWall>();
+                        //f.transform.Rotate(Vector3.forward, 0f);
                     }
                     else
                     {
-                        FinishWall f = Instantiate(FinishWallPrefab, new Vector2(x + 1 + offsetX, y + offsetY), Quaternion.identity).GetComponent<FinishWall>();
+                        f = Instantiate(FinishWallPrefab, new Vector2(x + 1 + offsetX, y + offsetY), Quaternion.identity).GetComponent<FinishWall>();
                         f.transform.Rotate(Vector3.forward, 90f);
-                        if (transform.name == "1")
-                        {
-                            Globals.finishWall1 = f;
-                        }
-                        if (transform.name == "2")
-                        {
-                            Globals.finishWall2 = f;
-                        }
-                        if (transform.name == "3")
-                        {
-                            Globals.finishWall3 = f;
-                        }
-                        if (transform.name == "4")
-                        {
-                            Globals.finishWall4 = f;
-                        }
                     }
-                    
+                    Globals.finishWall[index] = f;
                 }
             }
         }
