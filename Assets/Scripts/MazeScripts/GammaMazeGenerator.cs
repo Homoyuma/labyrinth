@@ -23,7 +23,7 @@ public class MazeGenerator
 {
     public int width = PlayerPrefs.GetInt("width") + 1;
     public int height = PlayerPrefs.GetInt("height") + 1;
-    public MazeGeneratorCell[,] GenerateMaze()
+    public MazeGeneratorCell[,] GenerateMaze(int index)
     {
         MazeGeneratorCell[,] maze = new MazeGeneratorCell[width, height];
 
@@ -44,19 +44,19 @@ public class MazeGenerator
             maze[width - 1, y].WallBottom = false;
         }
 
-        RemoveWallsWithBacktracker(maze);
+        RemoveWallsWithBacktracker(maze, index);
         //BinaryTreeAlgorithm(maze);
 
-        PlaceMazeExit(maze);
+        PlaceMazeExit(maze, index);
 
         return maze;
     }
 
-    private void RemoveWallsWithBacktracker(MazeGeneratorCell[,] maze)
+    private void RemoveWallsWithBacktracker(MazeGeneratorCell[,] maze, int index)
     {
-        Globals.startX = UnityEngine.Random.Range(0, width - 1);
-        Globals.startY = UnityEngine.Random.Range(0, height - 1);
-        MazeGeneratorCell current = maze[0, 0];
+        Globals.startX[index] = UnityEngine.Random.Range(0, width - 1);
+        Globals.startY[index] = UnityEngine.Random.Range(0, height - 1);
+        MazeGeneratorCell current = maze[Globals.startX[index], Globals.startY[index]];
         current.Visited = true;
         current.DistanceFromStart = 0;
 
@@ -152,10 +152,10 @@ public class MazeGenerator
         }
     }
 
-    private void PlaceMazeExit(MazeGeneratorCell[,] maze)
+    private void PlaceMazeExit(MazeGeneratorCell[,] maze, int index)
     {
         //finding furthest cell
-        MazeGeneratorCell furthest = maze[Globals.startX, Globals.startY];
+        MazeGeneratorCell furthest = maze[Globals.startX[index], Globals.startY[index]];
 
         for (int x = 0; x < maze.GetLength(0); x++)
         {

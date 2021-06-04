@@ -7,8 +7,6 @@ public class Globals : MonoBehaviour
     //gamma
     public static int mazeWidth = 3;
     public static int mazeHeight = 3;
-    public static int startX;
-    public static int startY;
     //delta
     public static int triangleMazeLength = 7;
     //theta
@@ -20,6 +18,8 @@ public class Globals : MonoBehaviour
     public static List<Cell>[] cellArray = new List<Cell>[n];
     public static FinishWall[] finishWall = new FinishWall[n];
     public static MazeSpawner[] spawner = new MazeSpawner[n];
+    public static int[] startX = new int[n];
+    public static int[] startY = new int[n];
 
     public static int getNumberOfCellsInRow(int x)
     {

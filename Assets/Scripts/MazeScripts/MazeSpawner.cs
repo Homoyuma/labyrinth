@@ -49,7 +49,7 @@ public class MazeSpawner : MonoBehaviour
     {
         index = int.Parse(transform.parent.name);
         MazeGenerator generator = new MazeGenerator();
-        MazeGeneratorCell[,] maze = generator.GenerateMaze();
+        MazeGeneratorCell[,] maze = generator.GenerateMaze(index);
         for (int x = 0; x < maze.GetLength(0); x++)
         {
             for (int y = 0; y < maze.GetLength(1); y++)
