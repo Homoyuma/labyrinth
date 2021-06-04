@@ -19,7 +19,7 @@ public class MoveToFinish : Agent
     public override void OnEpisodeBegin()
     {
         //transform.localPosition = new Vector2(Random.Range(0, PlayerPrefs.GetInt("width")), Random.Range(0, PlayerPrefs.GetInt("height"))) + offset;
-        transform.localPosition = new Vector2(0.5f, 0.5f);
+        transform.localPosition = new Vector2(Globals.startX + 0.5f, Globals.startY + 0.5f);
     }
     public override void CollectObservations(VectorSensor sensor)
     {

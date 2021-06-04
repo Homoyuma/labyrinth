@@ -7,6 +7,8 @@ public class Globals : MonoBehaviour
     //gamma
     public static int mazeWidth = 3;
     public static int mazeHeight = 3;
+    public static int startX;
+    public static int startY;
     //delta
     public static int triangleMazeLength = 7;
     //theta

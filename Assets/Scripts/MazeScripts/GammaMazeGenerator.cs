@@ -54,6 +54,8 @@ public class MazeGenerator
 
     private void RemoveWallsWithBacktracker(MazeGeneratorCell[,] maze)
     {
+        Globals.startX = UnityEngine.Random.Range(0, width - 1);
+        Globals.startY = UnityEngine.Random.Range(0, height - 1);
         MazeGeneratorCell current = maze[0, 0];
         current.Visited = true;
         current.DistanceFromStart = 0;
@@ -153,7 +155,7 @@ public class MazeGenerator
     private void PlaceMazeExit(MazeGeneratorCell[,] maze)
     {
         //finding furthest cell
-        MazeGeneratorCell furthest = maze[0, 0];
+        MazeGeneratorCell furthest = maze[Globals.startX, Globals.startY];
 
         for (int x = 0; x < maze.GetLength(0); x++)
         {
