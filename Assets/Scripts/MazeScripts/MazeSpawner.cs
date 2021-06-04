@@ -26,8 +26,11 @@ public class MazeSpawner : MonoBehaviour
     {
         index = int.Parse(transform.parent.name);
         Globals.cellArray[index] = new List<Cell>();
-        Globals.finishWall[index] = new FinishWall();
-        Globals.spawner[index] = new MazeSpawner();
+        //MyScript script = new Script();
+        //MyScript script = obj.AddComponent<MyScript>();
+        
+        Globals.finishWall[index] = GetComponent<FinishWall>();
+        Globals.spawner[index] = GetComponent<MazeSpawner>();
         Globals.spawner[index] = this;
         switch (PlayerPrefs.GetInt("type"))
         {
@@ -198,7 +201,6 @@ public class MazeSpawner : MonoBehaviour
         var points = new Vector3[lineRenderer.positionCount];
 
         //change later to number of theta cells
-        int n = 4;
         float angle =((float)360.0 / GameManager.getInstance().getNumberOfCellsInRow(x)) / (float)(lineRenderer.positionCount - 1);
         for (int i = 0; i < lineRenderer.positionCount; i++) 
         {

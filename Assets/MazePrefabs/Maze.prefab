@@ -91,6 +91,7 @@ MonoBehaviour:
     type: 3}
   offset: {fileID: 2647341773199981532}
   Player: {fileID: 2647341775080762452}
+  index: 0
 --- !u!1 &2647341775080762443
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,8 +108,8 @@ GameObject:
   - component: {fileID: 2647341775080762449}
   - component: {fileID: 2647341775080762455}
   - component: {fileID: 2647341775080762451}
-  - component: {fileID: 2647341775080762450}
-  - component: {fileID: 2647341775080762461}
+  - component: {fileID: 7392564780032748436}
+  - component: {fileID: 3633194739992363726}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -340,7 +341,7 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 0
+  MaxStep: 5000
   agentRigidbody: {fileID: 2647341775080762454}
   targetTransform: {fileID: 5290779148262533060, guid: 366808b791fbd97428a1c0afc8e978c7,
     type: 3}
@@ -358,18 +359,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BrainParameters:
     VectorObservationSize: 6
-    NumStackedVectorObservations: 2
-    VectorActionSize: 030000000300000002000000
+    NumStackedVectorObservations: 1
+    m_ActionSpec:
+      m_NumContinuousActions: 2
+      BranchSizes: 
+    VectorActionSize: 02000000
     VectorActionDescriptions: []
-    VectorActionSpaceType: 0
+    VectorActionSpaceType: 1
+    hasUpgradedBrainParametersWithActionSpec: 1
   m_Model: {fileID: 0}
-  m_InferenceDevice: 0
+  m_InferenceDevice: 3
   m_BehaviorType: 0
   m_BehaviorName: MoveToFinish
   TeamId: 0
   m_UseChildSensors: 1
   m_UseChildActuators: 1
-  m_ObservableAttributeHandling: 0
+  m_ObservableAttributeHandling: 2
 --- !u!114 &2647341775080762451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -384,23 +389,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DecisionPeriod: 5
   TakeActionsBetweenDecisions: 1
---- !u!114 &2647341775080762450
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2647341775080762443}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2902496c0120472b90269f94a0aec7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Record: 0
-  NumStepsToRecord: 0
-  DemonstrationName: test
-  DemonstrationDirectory: Demos
---- !u!114 &2647341775080762461
+--- !u!114 &7392564780032748436
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -414,15 +403,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SensorName: RayPerceptionSensor
   m_DetectableTags:
-  - Finish
   - Wall
-  m_RaysPerDirection: 6
+  - Finish
+  m_RaysPerDirection: 5
   m_MaxRayDegrees: 180
   m_SphereCastRadius: 0
-  m_RayLength: 20
+  m_RayLength: 10
   m_RayLayerMask:
     serializedVersion: 2
     m_Bits: 72
   m_ObservationStacks: 1
   rayHitColor: {r: 1, g: 0, b: 0.01956749, a: 1}
   rayMissColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &3633194739992363726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2647341775080762443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f67c7e722ba14acd9153bb4488bff6e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SensorName: RayPerceptionSensor2
+  m_DetectableTags:
+  - Finish
+  m_RaysPerDirection: 3
+  m_MaxRayDegrees: 90
+  m_SphereCastRadius: 0
+  m_RayLength: 10
+  m_RayLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  m_ObservationStacks: 1
+  rayHitColor: {r: 0, g: 1, b: 0.09432411, a: 1}
+  rayMissColor: {r: 0, g: 0, b: 0, a: 1}

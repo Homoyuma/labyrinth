@@ -26,6 +26,9 @@
 # Visual Studio cache directory
 .vs/
 /venv/
+/config/
+/Demos/
+/results/
 
 # Gradle cache directory
 .gradle/
