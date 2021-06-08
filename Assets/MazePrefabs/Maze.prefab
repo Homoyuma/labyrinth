@@ -367,7 +367,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 5022602860645237092, guid: 5c783651afadd514b87a5f9c0b0c1788, type: 3}
   m_InferenceDevice: 3
   m_BehaviorType: 0
   m_BehaviorName: MoveToFinish
@@ -387,7 +387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DecisionPeriod: 5
+  DecisionPeriod: 14
   TakeActionsBetweenDecisions: 1
 --- !u!114 &7392564780032748436
 MonoBehaviour:
@@ -430,10 +430,10 @@ MonoBehaviour:
   m_SensorName: RayPerceptionSensor2
   m_DetectableTags:
   - Finish
-  m_RaysPerDirection: 3
-  m_MaxRayDegrees: 90
+  m_RaysPerDirection: 7
+  m_MaxRayDegrees: 180
   m_SphereCastRadius: 0
-  m_RayLength: 10
+  m_RayLength: 12
   m_RayLayerMask:
     serializedVersion: 2
     m_Bits: 64

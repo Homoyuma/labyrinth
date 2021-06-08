@@ -9,12 +9,22 @@ public class MoveToFinish : Agent
 {
     public Rigidbody2D agentRigidbody;
     [SerializeField] private Transform targetTransform;
-    //private Vector2 offset = new Vector2(0.5f, 0.5f);
-    //[SerializeField] public Material win;
-    //[SerializeField] public SpriteRenderer floor;
     public override void Initialize()
     {
         agentRigidbody = GetComponent<Rigidbody2D>();
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Time.timeScale = 10.0f;
+            Debug.Log(Time.timeScale);
+        }
+        else if (Input.GetKeyDown(KeyCode.R))
+        {
+            Time.timeScale = 1.0f;
+            Debug.Log(Time.timeScale);
+        }
     }
     public override void OnEpisodeBegin()
     {
@@ -51,7 +61,7 @@ public class MoveToFinish : Agent
         float moveSpeed = 5f;
         agentRigidbody.velocity = moveSpeed * new Vector2(moveX, moveY);
         //transform.localPosition += new Vector3(moveX, moveY) * moveSpeed * Time.deltaTime;
-        //AddReward(-0.001f);
+        AddReward(-0.001f);
         //AddReward(-1f / MaxStep);
     }
     public override void Heuristic(in ActionBuffers actionsOut)
@@ -76,9 +86,11 @@ public class MoveToFinish : Agent
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Finish") == true) {
-            AddReward(+1.0f);
+            AddReward(1.0f);
             //floor.material = win;
             int index = int.Parse(transform.parent.name);
+            Globals.k[index] = Globals.k[index] + 1;
+            Debug.Log("maze ¹" + index + ":" + Globals.k[index]);
             int count = Globals.cellArray[index].Count;
             GameObject.Destroy(Globals.finishWall[index].gameObject);
             Globals.finishWall[index] = null;
@@ -93,7 +105,7 @@ public class MoveToFinish : Agent
         //Debug.Log(collision.gameObject.name);
         if (collision.gameObject.CompareTag("Wall") == true)
         {
-            AddReward(-0.0001f);
+            AddReward( +0.01f);
         }
     }
 }

@@ -20,6 +20,7 @@ public class Globals : MonoBehaviour
     public static MazeSpawner[] spawner = new MazeSpawner[n];
     public static int[] startX = new int[n];
     public static int[] startY = new int[n];
+    public static int[] k = new int[n];
 
     public static int getNumberOfCellsInRow(int x)
     {
